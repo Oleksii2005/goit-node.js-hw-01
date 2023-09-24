@@ -1,19 +1,20 @@
 import fs from "fs/promises";
-// contacts.js
-
+import path from "path";
+import { nanoid } from "nanoid";
 const contactsPath = "./db/contacts.json";
 
+// contacts.js
+
+/*
+ * Розкоментуй і запиши значення
+ * const contactsPath = ;
+ */
+
 // TODO: задокументувати кожну функцію
-async function listContacts() {
-  // #1
-  const filepath = "./db/contacts.json";
-  //   const buffer = await fs.readFile(filepath);
-  //   console.log(buffer);
-  //   const text = buffer.toString();
-  //   console.log(text);
-  // #2
-  const text = await fs.readFile(filepath, "utf-8");
-  console.log(text);
+function listContacts() {
+  // ...твій код. Повертає масив контактів.
+  const data = fs.readFile("./contacts.json");
+  return JSON.parse(data);
 }
 
 function getContactById(contactId) {
@@ -27,4 +28,3 @@ function removeContact(contactId) {
 function addContact(name, email, phone) {
   // ...твій код. Повертає об'єкт доданого контакту.
 }
-export default { listContacts, getContactById, removeContact, addContact };
