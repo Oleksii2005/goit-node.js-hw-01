@@ -1,24 +1,24 @@
 // import fs from "fs/promises";
-import * as contactsApi from "./contacts.js";
-// import {listContacts, getContactById, removeContact, addContact} from "./db/contacts"
+// import * as contactsApi from "./db/contacts.json";
+import * as contactsApi from "./db/contacts.js";
+import yargs from "yargs";
+import { program } from "commander";
 
-// index.js
-const argv = require("yargs").argv;
-
-// TODO: рефакторити
+program.option;
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      const allContacts = await contactsApi.listContacts();
-      return console.log(allContacts);
+      const getAllContacts = await contactsApi.listContacts();
+      return console.log(getAllContacts);
 
     case "get":
-      // ... id
-      break;
+      const oneContact = await contactsApi.getContactById(id);
+      return console.log(oneContact);
 
     case "add":
       // ... name email phone
-      break;
+      const newContact = await contactsApi.addContact({ name, email, phone });
+      return console.log(newContact);
 
     case "remove":
       // ... id
@@ -28,5 +28,3 @@ async function invokeAction({ action, id, name, email, phone }) {
       console.warn("\x1B[31m Unknown action type!");
   }
 }
-
-invokeAction(argv);
